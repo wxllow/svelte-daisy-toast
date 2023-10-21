@@ -5,7 +5,19 @@ export const prerender = true;
 import { getHighlighter, renderToHtml } from 'shiki';
 
 export async function load() {
-    const code1 = `<!-- +layout.svelte -->
+    const code1 = `/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        './src/**/*.{html,js,svelte,ts}',
++       './node_modules/svelte-daisy-toast/dist/**/*.{js,svelte}'
+    ],
+    theme: {
+        extend: {}
+    },
+    plugins: [require('daisyui')]
+};`;
+
+    const code2 = `<!-- +layout.svelte -->
 <script>
     import Toast from 'svelte-daisy-toast';
 </script>
@@ -13,7 +25,7 @@ export async function load() {
 <Toast position="bottom-center" />
 <slot />`;
 
-    const code2 = `<!-- +page.svelte -->
+    const code3 = `<!-- +page.svelte -->
 <script>
     import { toast } from 'svelte-daisy-toast';
 
@@ -31,7 +43,7 @@ export async function load() {
 
     const highlighter = await getHighlighter({
         theme: 'github-dark',
-        langs: ['svelte']
+        langs: ['svelte', 'diff']
     });
 
     const htmlOpts = {
@@ -48,11 +60,15 @@ export async function load() {
             version
         },
         code1: renderToHtml(
-            highlighter.codeToThemedTokens(code1, 'svelte', 'github-dark'),
+            highlighter.codeToThemedTokens(code1, 'diff', 'github-dark'),
             htmlOpts
         ),
         code2: renderToHtml(
             highlighter.codeToThemedTokens(code2, 'svelte', 'github-dark'),
+            htmlOpts
+        ),
+        code3: renderToHtml(
+            highlighter.codeToThemedTokens(code3, 'svelte', 'github-dark'),
             htmlOpts
         )
     };

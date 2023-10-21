@@ -23,6 +23,7 @@
     export let data: {
         code1: string;
         code2: string;
+        code3: string;
         info: {
             name: string;
             version: string;
@@ -47,9 +48,15 @@
                 installTab
             ].command}</pre>
     </div>
-    <h2 class="text-2xl">2. Add to layout</h2>
-    <div class="shiki hidden" />
+    <h2 class="text-2xl">2. Add to Tailwind config</h2>
+    <p class="text-lg text-gray-400">
+        Modify your <span class="font-bold">tailwind.config.js</span> to add svelte-daisy-toast,
+        otherwise Tailwind will tree-shake the "unused" styles!
+    </p>
     {@html data.code1}
-    <h2 class="text-2xl">3. Use</h2>
+    <h2 class="text-2xl">3. Add to layout</h2>
+    <div class="shiki hidden" />
     {@html data.code2}
+    <h2 class="text-2xl">4. Use</h2>
+    {@html data.code3}
 </div>

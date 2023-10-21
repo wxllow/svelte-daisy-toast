@@ -18,7 +18,25 @@ and [DaisyUI](https://daisyui.com/docs/install/) set up in your project.**
 bun add svelte-daisy-toast
 ```
 
-### 2. Add to layout
+### 2. Add to Tailwind config
+
+Modify your `tailwind.config.js` to add `svelte-daisy-toast`, otherwise Tailwind will tree-shake the "unused" styles!
+
+```diff
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        './src/**/*.{html,js,svelte,ts}',
++       './node_modules/svelte-daisy-toast/dist/**/*.{js,svelte}'
+    ],
+    theme: {
+        extend: {}
+    },
+    plugins: [require('daisyui')]
+};
+```
+
+### 3. Add to layout
 
 ```svelte
 <!-- +layout.svelte -->
@@ -30,7 +48,7 @@ bun add svelte-daisy-toast
 <slot />
 ```
 
-### 3. Use
+### 4. Use
 
 ```svelte
 <!-- +page.svelte -->
