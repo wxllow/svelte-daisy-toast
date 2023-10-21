@@ -63,8 +63,9 @@
 >
     {#each $toasts as toast, i}
         <div
-            class="max-w-sm alert whitespace-normal {TOAST_TYPES[toast.type]
-                ?.class}"
+            class="max-w-sm alert whitespace-normal {toast.type
+                ? TOAST_TYPES[toast.type].class
+                : ''}"
         >
             {#if toast.type}
                 <svelte:component this={TOAST_TYPES[toast.type].icon} />
