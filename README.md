@@ -1,58 +1,113 @@
-# create-svelte
+# svelte-daisy-toast
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Simple, beautiful toasts in [Svelte](https://svelte.dev/), with
+[DaisyUI](https://daisyui.com/).
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+## Demo
 
-## Creating a project
+[Demo](https://wxllow.github.io/svelte-daisy-toast/)
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Getting Started
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+**Make sure you have [Tailwind](https://tailwindcss.com/docs/guides/sveltekit)
+and [DaisyUI](https://daisyui.com/docs/install/) set up in your project.**
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### 1. Install
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+bun add svelte-daisy-toast
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+### 2. Add to layout
 
-## Building
+```svelte
+<!-- +layout.svelte -->
+<script>
+    import Toast from 'svelte-daisy-toast';
+</script>
 
-To build your library:
-
-```bash
-npm run package
+<Toast position="bottom-center" />
+<slot />
 ```
 
-To create a production version of your showcase app:
+### 3. Use
 
-```bash
-npm run build
+```svelte
+<!-- +page.svelte -->
+<script>
+    import { toast } from 'svelte-daisy-toast';
+
+    function boop() {
+        toast({
+            title: 'Boop',
+            message: 'Hello Svelte!',
+            duration: 5000,
+            type: 'success'
+        });
+    }
+</script>
+
+<button class="btn" on:click={boop}>I'm a button</button>
 ```
 
-You can preview the production build with `npm run preview`.
+## Usage
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+### Add to site
 
-## Publishing
+Simply `<Toast />` to your layout or page.
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+```svelte
+<script>
+    import Toast from 'svelte-daisy-toast';
+</script>
 
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
+<Toast position="bottom-center" />
+<slot />
 ```
+
+Your position can be `top-left`, `top-center`, `top-right`, `bottom-left`,
+`bottom-center`, `bottom-right`, `middle-left`, `middle-center`, or
+`middle-right`. The default is `top-center`.
+
+### Create toasts
+
+```ts
+import { toast } from 'svelte-daisy-toast';
+
+toast({
+    title: '',
+    message: '',
+    duration: 5000,
+    closable: true,
+    type = 'info'
+});
+```
+
+### Close a toast programmatically
+
+```ts
+import { toast, close } from 'svelte-daisy-toast';
+
+const myToast = toast({
+    title: '',
+    message: '',
+    duration: 5000,
+    closable: true,
+    type = 'info'
+});
+
+close(toast);
+```
+
+## Credits/Inspiration
+
+Possible thanks to
+
+- [Svelte](https://svelte.dev/)
+- [Tailwind](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/)
+
+Inspiration from
+
+- [Svelte French Toast](https://svelte-french-toast.com/)
+- [ChakraUI Toast Component](https://chakra-ui.com/toast)
