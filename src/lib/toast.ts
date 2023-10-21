@@ -17,6 +17,7 @@ export const toast = ({
     console.log({ title, message, duration, closable, type });
     const id = crypto.randomUUID() as string;
     toasts.set([
+        ...get(toasts),
         {
             id,
             title,
@@ -24,8 +25,7 @@ export const toast = ({
             type,
             duration,
             closable
-        },
-        ...get(toasts)
+        }
     ]);
 
     return id;
