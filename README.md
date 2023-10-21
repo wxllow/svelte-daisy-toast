@@ -65,9 +65,9 @@ Simply `<Toast />` to your layout or page.
 <slot />
 ```
 
-Your position can be `top-left`, `top-center`, `top-right`, `bottom-left`,
-`bottom-center`, `bottom-right`, `middle-left`, `middle-center`, or
-`middle-right`. The default is `top-center`.
+Your position can be `top-start`, `top-center`, `top-end`, `bottom-start`,
+`bottom-center`, `bottom-end`, `middle-start`, `middle-center`, or
+`middle-end`. The default is `top-center`.
 
 ### Create toasts
 

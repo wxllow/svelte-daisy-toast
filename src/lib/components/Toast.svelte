@@ -47,15 +47,15 @@
     });
 
     export let position:
-        | 'top-left'
+        | 'top-start'
         | 'top-center'
-        | 'top-right'
-        | 'middle-left'
+        | 'top-end'
+        | 'middle-start'
         | 'middle-center'
-        | 'middle-right'
-        | 'bottom-left'
+        | 'middle-end'
+        | 'bottom-start'
         | 'bottom-center'
-        | 'bottom-right' = 'top-center';
+        | 'bottom-end' = 'top-center';
 </script>
 
 <div

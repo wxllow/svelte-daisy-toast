@@ -6,7 +6,7 @@
     export let data;
 </script>
 
-<Toast position="top-right" />
+<Toast position="top-end" />
 <main
     class="py-12 md:max-w-3xl mx-auto items-center justify-center text-center min-h-screen"
 >
