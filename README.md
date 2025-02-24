@@ -97,7 +97,7 @@ toast({
     message: '',
     duration: 5000,
     closable: true,
-    type = 'info'
+    type: 'info'
 });
 ```
 
@@ -111,7 +111,7 @@ const myToast = toast({
     message: '',
     duration: 5000,
     closable: true,
-    type = 'info'
+    type: 'info'
 });
 
 close(toast);
